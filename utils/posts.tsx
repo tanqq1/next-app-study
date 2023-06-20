@@ -30,7 +30,7 @@ export function getSortedPostsData() {
   });
 }
 
-export function getAllPostIds() {
+export function getAllPostIds(): Array<{ params: { id: string } }> {
   const fileNames = fs.readdirSync(postDirectory);
 
   return fileNames.map((fileName) => {
@@ -42,7 +42,7 @@ export function getAllPostIds() {
   });
 }
 
-export async function getPostData(id) {
+export async function getPostData(id: string) {
   const fullPath = path.join(postDirectory, `${id}.md`);
   const fileContent = fs.readFileSync(fullPath, "utf8");
   const matterResult = matter(fileContent);
